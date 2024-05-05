@@ -19,8 +19,10 @@ jobs:
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         ssh-keyscan ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
     - name: clone repo
-      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git clone ${{ secrets.REPO_URL }} bot"
+      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git clone ${{ secrets.REPO_URL }} bot && exit"
     - name: connect and pull
       run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }}/bot && git checkout ${{ secrets.MAIN_BRANCH }} && git pull && exit"
+    - name: replace config variables
+      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "jq '.discord_bot_token = "${{ secrets.DISCORD_BOT_TOKEN }}" | .discord_server_id = "${{ secrets.DISCORD_SERVER_ID }}" | .database_host = "${{ secrets.DB_HOST }}" | .database_port = ${{ secrets.DB_PORT }} | .database_user = "${{ secrets.DB_USER }}" | .database_password = "${{ secrets.DB_PASSWORD }}" | .database_name = "${{ secrets.DB_NAME }}"' ${{ secrets.WORK_DIR }}/bot/config.json && exit"
     - name: cleanup
       run: rm -rf ~/.ssh
