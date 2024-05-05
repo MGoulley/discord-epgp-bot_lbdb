@@ -19,6 +19,7 @@ jobs:
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         ssh-keyscan ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
     - name: clone repo
+      continue-on-error: true
       run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && if [ ! -d directory ]; then git clone ${{ secrets.REPO_URL }} bot fi && exit"
     - name: connect and pull
       run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }}/bot && git checkout ${{ secrets.MAIN_BRANCH }} && git pull && exit"
