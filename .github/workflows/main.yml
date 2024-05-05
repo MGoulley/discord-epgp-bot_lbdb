@@ -25,5 +25,10 @@ jobs:
       run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }}/bot && git restore . && git checkout ${{ secrets.MAIN_BRANCH }} && git pull && exit"
     - name: replace config variables
       run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "sh ${{ secrets.WORK_DIR }}/bot/variabilise.sh ${{ secrets.DISCORD_BOT_TOKEN }} ${{ secrets.DISCORD_SERVER_ID }} ${{ secrets.DB_HOST }} ${{ secrets.DB_PORT }} ${{ secrets.DB_USER }} ${{ secrets.DB_PASSWORD }} ${{ secrets.DB_NAME }} ${{ secrets.WORK_DIR }}/bot/config.json && exit"
+    - name: maven package
+      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }}/bot && mvn package && exit"
     - name: cleanup
       run: rm -rf ~/.ssh
+
+
+#java -cp "/opt/lbdb/bot/target/epgp-discord-bot-0.0.1-jar-with-dependencies.jar:/opt/lbdb/bot/vendor/JDA.jar" com.epgpbot.transport.discord.DiscordBotLauncher /opt/lbdb/bot/config.json

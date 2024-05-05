@@ -21,7 +21,7 @@ public class SQLDatabase extends AbstractDatabase {
     if (isSSL) {
       url += "?verifyServerCertificate=true&useSSL=true&requireSSL=true";
     } else {
-      url += "?useSSL=false";
+      url += "?useSSL=false&allowPublicKeyRetrieval=true";
     }
 
     source.setJdbcUrl(url);
