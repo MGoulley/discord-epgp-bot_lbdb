@@ -200,19 +200,6 @@ public class LootInfo {
 
     query = query.replace("!", "!!").replace("%", "!%").replace("_", "!_").replace("[", "![");
 
-    try (Statement q = tx.prepare(String.format(GET_ALIAS_QUERY, "la.name = :query"))) {
-      q.bind("query", query);
-      try (Cursor r = q.executeFetch()) {
-        while (r.next()) {
-          LootInfo out = readNext(r);
-          if (!ids.contains(out.lootId)) {
-            fuzzyMatches.add(out);
-            ids.add(out.lootId);
-          }
-        }
-      }
-    }
-
     try (Statement q = tx.prepare(
         String.format(GET_QUERY, "l.name LIKE :query ESCAPE '!'"))) {
       q.bind("query", "%" + query + "%");
