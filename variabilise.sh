@@ -20,7 +20,7 @@ jq '.database_host = "'"$DB_HOST"'"' $FILE > "${FILE}.tmp"
 cat "${FILE}.tmp" > $FILE
 jq '.database_port = "'"$DB_PORT"'"' $FILE > "${FILE}.tmp"
 cat "${FILE}.tmp" > $FILE
-jq '[ .[] | .database_port = (.database_port | tonumber) ]' $FILE > "${FILE}.tmp"
+jq '.database_port = (.database_port | tonumber)' $FILE > "${FILE}.tmp"
 cat "${FILE}.tmp" > $FILE
 jq '.database_user = "'"$DB_USER"'"' $FILE > "${FILE}.tmp"
 cat "${FILE}.tmp" > $FILE
