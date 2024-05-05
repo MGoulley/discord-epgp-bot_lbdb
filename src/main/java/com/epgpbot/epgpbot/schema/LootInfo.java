@@ -28,9 +28,6 @@ public class LootInfo {
   private static final String GET_QUERY = "SELECT l.id, l.name, lgi.game_id, lgi.game_rarity "
       + "FROM loot AS l " + "LEFT JOIN loot_game_info AS lgi ON lgi.loot_id = l.id " + "WHERE %s "
       + "ORDER BY l.name ASC;";
-  private static final String GET_ALIAS_QUERY = "SELECT l.id, l.name, lgi.game_id, lgi.game_rarity "
-      + "FROM loot AS l " + "LEFT JOIN loot_game_info AS lgi ON lgi.loot_id = l.id "
-      + "LEFT JOIN loot_alias AS la ON la.loot_id = l.id " + "WHERE %s " + "ORDER BY l.name ASC;";
   public long lootId;
   public String name;
 
@@ -170,15 +167,6 @@ public class LootInfo {
         return out;
       }
     }
-
-    try (Statement q = tx.prepare(String.format(GET_ALIAS_QUERY, "lower(la.name) = :key"))) {
-      q.bind("key", name.toLowerCase());
-      LootInfo out = get(tx, q);
-      if (out != null) {
-        return out;
-      }
-    }
-
     return null;
   }
 

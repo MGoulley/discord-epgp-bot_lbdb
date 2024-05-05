@@ -53,14 +53,6 @@ public class SQLTest {
         "epgpdb_dev",
         false
     )) {
-      /*try (Transaction tx = db.transaction()) {
-        try (Statement q = tx.prepare("INSERT INTO loot_alias (id, name, loot_id) VALUES (", Param.ID, ", ", Param.NAME, ", ", Param.LOOT_ID, ");")) {
-          q.bind(Param.ID, 1L);
-          q.bind(Param.LOOT_ID, 99999999L);
-          q.bind(Param.NAME, "DBTEST");
-          q.executeInsert(); // Should fail.
-        }
-      }*/
 
       try (Transaction tx = db.transaction()) {
         try (Statement q = tx.prepare("SELECT * FROM epgp_log WHERE id IN " + Statement.in("ids", ids) + ";")) {

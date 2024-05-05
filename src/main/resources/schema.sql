@@ -4,7 +4,6 @@ DROP TABLE IF EXISTS epgp_log;
 DROP TABLE IF EXISTS loot;
 DROP TABLE IF EXISTS characters;
 DROP TABLE IF EXISTS players;
-DROP TABLE IF EXISTS loot_alias;
 DROP TABLE IF EXISTS loot_game_info;
 SET FOREIGN_KEY_CHECKS = 1;
 
@@ -55,15 +54,6 @@ CREATE TABLE characters (
 CREATE TABLE loot (
   id int(64) unsigned not null auto_increment,
   name varchar(255) not null,
-  PRIMARY KEY(id),
-  UNIQUE(name)
-);
-
-CREATE TABLE loot_alias (
-  id int(64) unsigned not null auto_increment,
-  name varchar(255) not null,
-  loot_id int(64) unsigned default null,
-  FOREIGN KEY(loot_id) REFERENCES loot(id) ON DELETE RESTRICT,
   PRIMARY KEY(id),
   UNIQUE(name)
 );

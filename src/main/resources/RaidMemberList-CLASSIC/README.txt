@@ -1,1 +1,0 @@
-Very simple addon - type /raidmembers to get a copy-pasteable list of raid members for the EPGP bot.

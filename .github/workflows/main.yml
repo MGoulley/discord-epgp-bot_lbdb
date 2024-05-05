@@ -18,8 +18,6 @@ jobs:
         install -m 600 -D /dev/null ~/.ssh/id_rsa
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         ssh-keyscan ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
-    - name: stop service
-      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "systemctl stop lbdb.service && exit"
     - name: clone repo
       continue-on-error: true
       run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && if [ ! -d directory ]; then git clone ${{ secrets.REPO_URL }} bot fi && exit"
@@ -29,8 +27,6 @@ jobs:
       run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "sh ${{ secrets.WORK_DIR }}/bot/variabilise.sh ${{ secrets.DISCORD_BOT_TOKEN }} ${{ secrets.DISCORD_SERVER_ID }} ${{ secrets.DB_HOST }} ${{ secrets.DB_PORT }} ${{ secrets.DB_USER }} ${{ secrets.DB_PASSWORD }} ${{ secrets.DB_NAME }} ${{ secrets.WORK_DIR }}/bot/config.json && exit"
     - name: maven package
       run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }}/bot && mvn package && exit"
-    - name: start service
-      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "systemctl start lbdb.service && exit"
     - name: cleanup
       run: rm -rf ~/.ssh
 

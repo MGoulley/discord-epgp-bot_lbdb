@@ -1,6 +1,0 @@
-## Interface: 30300
-## Title: Raid Member List
-## Notes: Use /raidmembers to get a copyable list of raid members.
-## Author: Rekt
-
-RaidMemberList.lua
