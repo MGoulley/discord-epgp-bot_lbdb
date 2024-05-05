@@ -30,7 +30,7 @@ jobs:
         ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "jq \
         --arg DISCORD_BOT_TOKEN "${{ secrets.DISCORD_BOT_TOKEN }}" \
         --arg DISCORD_SERVER_ID "${{ secrets.DISCORD_SERVER_ID }}" \
-        '.discord_bot_token = ($DISCORD_BOT_TOKEN) | .discord_server_id = ($DISCORD_SERVER_ID) \
+        '.discord_bot_token = ($DISCORD_BOT_TOKEN) | .discord_server_id = ($DISCORD_SERVER_ID)' \
         ${{ secrets.WORK_DIR }}/bot/config.json \
         && exit"
     - name: cleanup
