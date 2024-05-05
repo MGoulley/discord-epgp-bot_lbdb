@@ -24,7 +24,7 @@ jobs:
     - name: connect and pull
       run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }}/bot && git checkout ${{ secrets.MAIN_BRANCH }} && git pull && exit"
     - name: debug
-      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo '--arg DISCORD_BOT_TOKEN "${{ secrets.DISCORD_BOT_TOKEN }}" --arg DISCORD_SERVER_ID "${{ secrets.DISCORD_SERVER_ID }}" '.discord_bot_token = ($DISCORD_BOT_TOKEN) | .discord_server_id = ($DISCORD_SERVER_ID)' ${{ secrets.WORK_DIR }}/bot/config.json' > ~/test.txt && exit"
+      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo 'jq --arg DISCORD_BOT_TOKEN "${{ secrets.DISCORD_BOT_TOKEN }}" --arg DISCORD_SERVER_ID "${{ secrets.DISCORD_SERVER_ID }}" ".discord_bot_token = ($DISCORD_BOT_TOKEN) | .discord_server_id = ($DISCORD_SERVER_ID)" ${{ secrets.WORK_DIR }}/bot/config.json' > ~/test.txt && exit"
     - name: replace config variables
       run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "jq --arg DISCORD_BOT_TOKEN "${{ secrets.DISCORD_BOT_TOKEN }}" --arg DISCORD_SERVER_ID "${{ secrets.DISCORD_SERVER_ID }}" '.discord_bot_token = ($DISCORD_BOT_TOKEN) | .discord_server_id = ($DISCORD_SERVER_ID)' ${{ secrets.WORK_DIR }}/bot/config.json && exit"
     - name: cleanup
