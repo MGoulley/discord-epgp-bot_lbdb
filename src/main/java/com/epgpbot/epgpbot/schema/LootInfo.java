@@ -66,7 +66,7 @@ public class LootInfo {
     }
 
     try {
-      URL zfu = this.getClass().getResource("/cata-tooltips.zip");
+      URL zfu = this.getClass().getResource("/classic-tooltips.zip");
       try (ZipFile zf = new ZipFile(new File(zfu.toURI()))) {
         ZipEntry entry = zf.getEntry(String.format("%d.png", itemId));
 
