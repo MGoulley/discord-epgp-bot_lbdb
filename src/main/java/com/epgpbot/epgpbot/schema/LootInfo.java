@@ -60,38 +60,6 @@ public class LootInfo {
     return String.format("https://cata.wowhead.com/item=%d", itemId);
   }
 
-  public InputStream getTooltipImage() throws Exception {
-    if (itemId < 0) {
-      return null;
-    }
-
-    try {
-      URL zfu = this.getClass().getResource("/classic-tooltips.zip");
-      try (ZipFile zf = new ZipFile(new File(zfu.toURI()))) {
-        ZipEntry entry = zf.getEntry(String.format("%d.png", itemId));
-
-        if (entry == null) {
-          return null;
-        }
-
-        InputStream file = zf.getInputStream(entry);
-        byte[] image = IOUtils.toByteArray(file);
-        return new ByteArrayInputStream(image);
-      }
-
-      /*
-      String url = String.format("https://items.classicmaps.xyz/%d.png", itemId);  // TODO: Localize.
-      URLConnection con = new URL(url).openConnection();
-      con.setConnectTimeout(1000);  // in milliseconds
-      InputStream file = con.getInputStream();
-      byte[] image = IOUtils.toByteArray(file);
-      return new ByteArrayInputStream(image);
-      */
-    } catch (IOException e) {
-      throw new Exception("Failed to fetch item tooltip image", e);
-    }
-  }
-
   @Override
   public int hashCode() {
     final int prime = 31;

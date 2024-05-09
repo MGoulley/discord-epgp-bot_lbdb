@@ -51,7 +51,7 @@ public abstract class CommandHandlerAbstract implements CommandHandler {
     }
     Date date = new Date(timestamp * 1000);
     SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy h:mm a z", Locale.ENGLISH);
-    sdf.setTimeZone(TimeZone.getTimeZone("America/Los_Angeles"));
+    sdf.setTimeZone(TimeZone.getTimeZone("France/Paris"));
     return sdf.format(date);
   }
 

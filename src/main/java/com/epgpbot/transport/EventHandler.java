@@ -44,7 +44,6 @@ import com.epgpbot.epgpbot.commands.GuildOfficersCommandHandler;
 import com.epgpbot.epgpbot.commands.GuildMembersCommandHandler;
 import com.epgpbot.epgpbot.commands.GuildSyncCommandHandler;
 import com.epgpbot.epgpbot.commands.HelpCommandHandler;
-import com.epgpbot.epgpbot.commands.ItemLinkCommandHandler;
 import com.epgpbot.epgpbot.commands.ItemSearchCommandHandler;
 import com.epgpbot.epgpbot.commands.ItemDistributionCommandHandler;
 import com.epgpbot.epgpbot.commands.ItemMergeCommandHandler;
@@ -110,7 +109,6 @@ public class EventHandler implements AutoCloseable {
 
     handlers.add(new HelpCommandHandler(handlers));
 
-    handlers.add(new ItemLinkCommandHandler());
     handlers.add(new ItemSearchCommandHandler());
 
     handlers.add(new ItemMergeCommandHandler());

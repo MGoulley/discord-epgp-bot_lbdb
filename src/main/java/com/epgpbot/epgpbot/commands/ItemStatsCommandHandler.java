@@ -72,17 +72,9 @@ public class ItemStatsCommandHandler extends AbstractEPGPCommandHandler {
             .addField("Average GP Cost",  String.format("%d", Math.round((double)gpSpent / timesSeen)), false)
             .build();
 
-          if (loot.hasItemId()) {
-            context.source().raw()
-                .sendFile(loot.getTooltipImage(), "item.png")
-                .embed(embed)
-                .queue();
-          }
-          else {
-            context.source().raw()
-                .sendMessage(embed)
-                .queue();
-          }
+          context.source().raw()
+              .sendMessageEmbeds(embed)
+              .queue();
         }
       }
     }
