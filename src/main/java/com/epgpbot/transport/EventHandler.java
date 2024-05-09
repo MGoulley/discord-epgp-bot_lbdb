@@ -121,11 +121,11 @@ public class EventHandler implements AutoCloseable {
     handlers.add(new PlayerCharacterListCommandHandler());
     handlers.add(new PlayerTransportListCommandHandler());
 
-    handlers.add(new QuitCommandHandler());
+    //handlers.add(new QuitCommandHandler());
 
     handlers.add(new RollCommandHandler());
 
-    handlers.add(new EquipCommandHandler());
+    //handlers.add(new EquipCommandHandler());
 
     handlers.add(new TransportWhoisCommandHandler());
     handlers.add(new TransportListUnlinkedCommandHandler());
@@ -133,7 +133,7 @@ public class EventHandler implements AutoCloseable {
     handlers.add(new TransportPermissionsCommandHandler());
     handlers.add(new TransportUidCommandHandler());
 
-    handlers.add(new TimeResolveCommandHandler());
+    //handlers.add(new TimeResolveCommandHandler());
 
     if (config.game_armory_type != ArmoryType.NONE) {
       handlers.add(new CharacterSyncCommandHandler());
@@ -159,14 +159,14 @@ public class EventHandler implements AutoCloseable {
         handlers.add(new EPGPStandingsCommandHandler());
         handlers.add(new EPGPTotalsCommandHandler());
         handlers.add(new EPGPCompareCommandHandler());
-        handlers.add(new EPGPImportCommandHandler());
+        //handlers.add(new EPGPImportCommandHandler());
         handlers.add(new EPGPCompareInteractiveCommandHandler());
         handlers.add(new EPGPRewriteHistoryCommandHandler());
-        handlers.add(new EPGPCheckDBIntegrityCommandHandler());
+        //handlers.add(new EPGPCheckDBIntegrityCommandHandler());
         handlers.add(new EPGPAdjustCommandHandler());
         handlers.add(new EPGPTopDockedCommandHandler());
         handlers.add(new EPGPUndoCommandHandler());
-        handlers.add(new EPGPLootBackfillCommandHandler());
+        //handlers.add(new EPGPLootBackfillCommandHandler());
         break;
       case DKP:
         break;
