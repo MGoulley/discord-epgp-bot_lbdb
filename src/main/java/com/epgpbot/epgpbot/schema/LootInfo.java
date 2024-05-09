@@ -57,7 +57,7 @@ public class LootInfo {
     if (itemId < 0) {
       return null;
     }
-    return String.format("https://classic.wowhead.com/item=%d", itemId);
+    return String.format("https://cata.wowhead.com/item=%d", itemId);
   }
 
   public InputStream getTooltipImage() throws Exception {
@@ -66,7 +66,7 @@ public class LootInfo {
     }
 
     try {
-      URL zfu = this.getClass().getResource("/classic-tooltips.zip");
+      URL zfu = this.getClass().getResource("/cata-tooltips.zip");
       try (ZipFile zf = new ZipFile(new File(zfu.toURI()))) {
         ZipEntry entry = zf.getEntry(String.format("%d.png", itemId));
 
@@ -126,7 +126,7 @@ public class LootInfo {
   }
 
   public static String getDatabaseSearchURL(String query) throws UnsupportedEncodingException {
-    return String.format("https://classic.wowhead.com/items/name:%s",
+    return String.format("https://cata.wowhead.com/items/name:%s",
         URLEncoder.encode(query, Charset.defaultCharset().toString()));
   }
 

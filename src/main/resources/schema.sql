@@ -62,6 +62,7 @@ CREATE TABLE loot_game_info (
   loot_id int(64) unsigned NOT NULL,
   game_id int(64) unsigned NOT NULL,
   game_rarity int(8) unsigned NOT NULL,
+  ilvl int(8) unsigned NOT NULL,
   game_slot int(8) unsigned NOT NULL,
   FOREIGN KEY(loot_id) REFERENCES loot(id) ON DELETE RESTRICT,
   UNIQUE(game_id)
@@ -69,12 +70,11 @@ CREATE TABLE loot_game_info (
 
 /* To import loot from an open source database (such as Mangos/Trinity): */
 /*
-INSERT INTO loot (SELECT DISTINCT name FROM item_template);
-INSERT INTO loot_game_info (
-	SELECT l.id AS loot_id, it.entry AS game_id, it.quality AS game_rarity 
-	FROM item_template AS it
-	JOIN loot AS l ON l.name = it.name
-);
+INSERT INTO loot (name) SELECT DISTINCT name FROM mangos3.item_template;
+INSERT INTO loot_game_info (loot_id, game_id, game_rarity, ilvl, game_slot) SELECT l.id AS loot_id, it.entry AS game_id, it.quality AS game_rarity, it.ItemLevel AS ilvl, it.InventoryType AS game_slot 
+  FROM mangos3.item_template AS it 
+  JOIN loot AS l ON l.name = it.name;
+;
 */
 
 # type = enum {IMPORT, MERGE, PENALTY, LOOT, STANDBY, RAID, INCENTIVE, DECAY}
