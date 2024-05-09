@@ -6,7 +6,7 @@
     "loot_method": "EPGP",
     "discord_bot_token": "$DISCORD_BOT_TOKEN",
     "discord_server_id": "$DISCORD_SERVER_ID",
-    "discord_channels": ["epgp"],
+    "discord_channels": ["epgp", "epgp-officier"],
     "discord_ranks_to_permissions": {
         "epgp officier": [
             "VIEW_EPGP",
